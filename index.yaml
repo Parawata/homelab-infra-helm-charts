@@ -3,12 +3,12 @@ entries:
   microservice-base:
   - apiVersion: v2
     appVersion: "1.0"
-    created: "2026-02-27T14:50:50.025707106Z"
+    created: "2026-02-27T14:54:36.054450698Z"
     description: Base library chart for microservices - provides shared templates
-    digest: 75854b95ac9c05e500150615daa103a3024af4236b830632e095b897d09697c5
+    digest: d8879e5a324b44cf57e5746817788b28e94d7c2ab5545827debb0da9a65d7b37
     name: microservice-base
     type: application
     urls:
     - https://raw.githubusercontent.com/Parawata/homelab-infra-helm-charts/gh-pages/charts/microservice-base-0.1.0.tgz
     version: 0.1.0
-generated: "2026-02-27T14:50:50.02536258Z"
+generated: "2026-02-27T14:54:36.054082075Z"
