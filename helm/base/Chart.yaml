@@ -1,6 +1,6 @@
 apiVersion: v2
 name: microservice-base
 description: Base library chart for microservices - provides shared templates
-type: library
+type: application
 version: 0.1.0
 appVersion: "1.0"
