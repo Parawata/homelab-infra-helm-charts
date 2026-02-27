@@ -1,4 +1,5 @@
 1. Get the application URL by running these commands:
+TEST PLACEHOLDER: {{ .Values.testPlaceholder | default "TEST-PLACEHOLDER-NOT-FOUND" }}
 {{- if .Values.httpRoute.enabled }}
 {{- if .Values.httpRoute.hostnames }}
     export APP_HOSTNAME={{ .Values.httpRoute.hostnames | first }}
