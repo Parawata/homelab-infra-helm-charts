@@ -42,9 +42,9 @@ jobs:
         working-directory: gh-pages
         run: |
           if [ -f index.yaml ]; then
-            helm repo index charts --merge index.yaml --url https://raw.githubusercontent.com/Parawata/homelab-infra/gh-pages/charts/
+            helm repo index charts --merge index.yaml --url https://raw.githubusercontent.com/Parawata/homelab-infra-helm-charts/gh-pages/charts/
           else
-            helm repo index charts --url https://raw.githubusercontent.com/Parawata/homelab-infra/gh-pages/charts/
+            helm repo index charts --url https://raw.githubusercontent.com/Parawata/homelab-infra-helm-charts/gh-pages/charts/
           fi
           mv charts/index.yaml index.yaml
 
