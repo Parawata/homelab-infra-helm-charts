@@ -1,0 +1,59 @@
+name: Publish Helm Charts to gh-pages
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'helm/base/**'
+      - '.github/workflows/publish-helm-charts.yml'
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pages: write
+      id-token: write
+
+    steps:
+      - name: Checkout main branch
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Checkout gh-pages branch
+        uses: actions/checkout@v4
+        with:
+          ref: gh-pages
+          path: gh-pages
+
+      - name: Set up Helm
+        uses: azure/setup-helm@v3
+        with:
+          version: 'latest'
+
+      - name: Package Helm chart
+        run: |
+          mkdir -p gh-pages/charts
+          helm package helm/base -d gh-pages/charts
+
+      - name: Generate or update index.yaml
+        working-directory: gh-pages
+        run: |
+          if [ -f index.yaml ]; then
+            helm repo index charts --merge index.yaml --url https://raw.githubusercontent.com/Parawata/homelab-infra/gh-pages/charts/
+          else
+            helm repo index charts --url https://raw.githubusercontent.com/Parawata/homelab-infra/gh-pages/charts/
+          fi
+          mv charts/index.yaml index.yaml
+
+      - name: Commit and push to gh-pages
+        working-directory: gh-pages
+        run: |
+          git config user.name "GitHub Actions"
+          git config user.email "actions@github.com"
+          git add -A
+          git commit -m "Publish Helm chart: microservice-base" || echo "No changes to commit"
+          git push
+
