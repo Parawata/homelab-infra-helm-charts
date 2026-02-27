@@ -53,9 +53,9 @@ app.kubernetes.io/instance: {{ .Release.Name }}
 {{/*
 Create the name of the service account to use
 */}}
-{{- define "eureka.serviceAccountName" -}}
+{{- define "microservice.serviceAccountName" -}}
 {{- if .Values.serviceAccount.create }}
-{{- default (include "eureka.fullname" .) .Values.serviceAccount.name }}
+{{- default (include "microservice.fullname" .) .Values.serviceAccount.name }}
 {{- else }}
 {{- default "default" .Values.serviceAccount.name }}
 {{- end }}
